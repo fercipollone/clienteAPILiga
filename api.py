@@ -4,6 +4,7 @@ from datetime import date
 from datetime import datetime
 from hashlib import md5
 from log import *
+from tkinter import messagebox
 
 def hash():
     today = date.today()
@@ -28,4 +29,9 @@ def UltimoCobroPost(payload):
     print(payload)   
     print("Status code Ultimo Cobro POST: " + str(response.status_code))
 
+    if response.status_code == 200:
+        msj = "Actualización Exitosa!"
+    else: 
+        msj = "Actualización Fallida!"
+    messagebox.showinfo(message=msj, title="Actualización de Jugadores")
     
