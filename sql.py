@@ -1,7 +1,8 @@
 import pymssql
+import decimal
 from datetime import date
 from datetime import datetime
-import decimal
+from log import *
 
 def conecta():
     conn = pymssql.connect(server='SERVER', user='sa', password='Pass@movilsol', database='b4_Country')
@@ -10,7 +11,9 @@ def conecta():
 def recuperaJugadores():
     conn = conecta()
     cursor = conn.cursor(as_dict=True)
-    cursor.execute('SELECT TOP 10 * FROM vw_ApiCliente')
+    qry = 'SELECT TOP 10 * FROM vw_ApiCliente'
+    logMSSQL(qry,'recuperaJugadores')
+    cursor.execute(qry)
     row = cursor.fetchone()
     resp = '"jugadores": ['
     while row:

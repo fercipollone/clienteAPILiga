@@ -1,9 +1,9 @@
 use b4_Country 
  
- CREATE VIEW vw_ApiCliente
+CREATE VIEW vw_ApiCliente
  AS
  SELECT 
-	s.soc_documento, case when Cant <= 2 then 1 else 0 end AS Habilitado,  dbo.fn_UltimaFechaPago(cp.soc_idsocio) AS UltimaFechaPago
+	s.soc_documento AS dni, case when Cant <= 2 then 1 else 0 end AS Habilitado,  dbo.fn_UltimaFechaPago(cp.soc_idsocio) AS UltimaFechaPago
  FROM 
 	vw_CuotasPendientesCantidad cp
 		INNER JOIN Socio s 
@@ -13,6 +13,3 @@ use b4_Country
     AND cp.ses_tipoBaja = 0 
     
     
-sp_so 'ultima'
-
-vw_UltimaFechaDePago

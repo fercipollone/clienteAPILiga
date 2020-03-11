@@ -3,6 +3,7 @@ import hashlib
 from datetime import date
 from datetime import datetime
 from hashlib import md5
+from log import *
 
 def hash():
     today = date.today()
@@ -21,6 +22,8 @@ def UltimoCobroPost(payload):
     headers = {'Content-type': 'application/json'}
 
     response = requests.post(url, headers=headers, data=payload.encode('utf-8'))
+
+    logAPI(url,'POST',headers,'', payload,response)
 
     print(payload)   
     print("Status code Ultimo Cobro POST: " + str(response.status_code))
